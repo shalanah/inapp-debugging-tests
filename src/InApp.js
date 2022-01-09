@@ -23,6 +23,13 @@ const AndroidInApp = (url) => {
         href={getAndroidRedirectLink(url)}
         target={"_blank"}
       >{`Open Browser`}</a>
+      <a
+        style={{ margin: "auto" }}
+        href={url}
+        target={"_blank"}
+      >{`Open Browser 2`}</a>
+      <a style={{ margin: "auto" }} href={url} target={"_blank"}>{`Example`}</a>
+      <a style={{ margin: "auto" }} href={url}>{`Example 2`}</a>
     </div>
   );
 };
