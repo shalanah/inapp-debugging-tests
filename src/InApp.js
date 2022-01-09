@@ -15,13 +15,10 @@ const getInApp = () => {
   console.log(bowserParsed);
   console.log(inAppRes);
   // }
-
-  const androidInApp = inAppRes.isInApp && bowserParsed.os.name === "Android";
-  const iOSInApp = inAppRes.isInApp && bowserParsed.os.name === "iOS";
   return {
-    isInApp: inAppRes.isInApp,
-    androidInApp,
-    iOSInApp,
+    isInApp,
+    androidInApp: isInApp && bowserParsed.os.name === "Android",
+    iOSInApp: isInApp && bowserParsed.os.name === "iOS",
   };
 };
 
@@ -55,7 +52,8 @@ const AndroidInApp = (url) => {
   );
 };
 
-const IOSInAppAndDefaultInApp = () => {
+const IOSInAppAndDefaultInApp = ({ name, url, email }) => {
+  const urlWithoutProtocol = url.split("//")[1];
   return (
     <div
       style={{
@@ -68,23 +66,38 @@ const IOSInAppAndDefaultInApp = () => {
         top: 0,
         zIndex: 10000,
       }}
-    ></div>
+    >
+      <h1>Oooops!</h1>
+      <p>This browser isn't {name} friendly.</p>
+      <h2>Steps to use {url}</h2>
+      <ul>
+        <ol>Open your favorite browser like Safari</ol>
+        <ol>
+          Paste in {url} or search for "{name}"
+        </ol>
+      </ul>
+      <p>Contact {email} for support</p>
+    </div>
   );
 };
 
-const inApp = ({ url = "https://example.com" }) => {
+const inApp = ({
+  url = "https://example.com",
+  email = "me@example.com",
+  name = "Example",
+}) => {
   const { isInApp, androidInApp, iOSInApp } = getInApp();
 
   useEffect(() => {
     if (androidInApp) {
       // Try redirecting automatically
-      const androidRedirectLink = getAndroidRedirectLink(url);
-      window.location = `intent:${androidRedirectLink}#Intent;end`;
+      window.location = getAndroidRedirectLink(url);
     }
   }, [androidInApp]);
 
   if (androidInApp) return <AndroidInApp url={url} />;
-  if (iOSInApp || isInApp) return <IOSInAppAndDefaultInApp />;
+  if (iOSInApp || isInApp)
+    return <IOSInAppAndDefaultInApp email={email} name={name} url={url} />;
   return null;
 };
 
