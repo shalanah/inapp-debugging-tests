@@ -1,33 +1,8 @@
 import React, { useEffect } from "react";
-import InApp from "detect-inapp";
-import Bowser from "bowser";
-
-const getInApp = () => {
-  const inAppRes = new InApp(
-    navigator.userAgent || navigator.vendor || window.opera
-  );
-  const bowserParsed = Bowser.parse(window.navigator.userAgent);
-  const isInApp = inAppRes.isInApp;
-
-  // For debugging
-  // if (isInApp || bowserParsed.platform.type !== "desktop") {
-  console.log(window.navigator.userAgent);
-  console.log(bowserParsed);
-  console.log(inAppRes);
-  // }
-  return {
-    isInApp,
-    androidInApp: isInApp && bowserParsed.os.name === "Android",
-    iOSInApp: isInApp && bowserParsed.os.name === "iOS",
-  };
-};
+import { getInApp, getAndroidRedirectLink } from "./inAppUtils";
 
 // 1. Need to detect if in app
 // 2. Need to serve up options for android + iphone
-
-const getAndroidRedirectLink = (url) => {
-  return `intent:${url}#Intent;end`;
-};
 
 const AndroidInApp = (url) => {
   return (
@@ -45,7 +20,7 @@ const AndroidInApp = (url) => {
     >
       <a
         style={{ margin: "auto" }}
-        href={url}
+        href={getAndroidRedirectLink(url)}
         target={"_blank"}
       >{`Open Browser`}</a>
     </div>
