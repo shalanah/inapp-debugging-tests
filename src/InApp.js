@@ -1,44 +1,79 @@
-import InApp from "detect-inapp";
+import InApp, { useEffect } from "detect-inapp";
 import Bowser from "bowser";
 
-const getAndroidInApp = () => {
+const getInApp = () => {
   const inAppRes = new InApp(
     navigator.userAgent || navigator.vendor || window.opera
   );
   const bowserParsed = Bowser.parse(window.navigator.userAgent);
+  const isInApp = inAppRes.isInApp;
+
+  // For debugging
+  // if (isInApp || bowserParsed.platform.type !== "desktop") {
+  console.log(window.navigator.userAgent);
+  console.log(parsedBrowser);
+  console.log(inAppRes);
+  // }
+
   const androidInApp = inAppRes.isInApp && bowserParsed.os.name === "Android";
   const iOSInApp = inAppRes.isInApp && bowserParsed.os.name === "iOS";
   return {
-    inApp: inAppRes.isInApp,
+    isInApp: inAppRes.isInApp,
     androidInApp,
-    iOSInApp
+    iOSInApp,
   };
 };
 
 // 1. Need to detect if in app
 // 2. Need to serve up options for android + iphone
 
-export const isInApp = () => {
-  const inAppRes = new InApp(
-    navigator.userAgent || navigator.vendor || window.opera
+const AndroidInApp = () => {
+  return (
+    <div
+      style={{
+        display: "fixed",
+        background: "green",
+        width: "100%",
+        height: "100%",
+        left: 0,
+        top: 0,
+        zIndex: 10000,
+      }}
+    ></div>
   );
-  const parsedBrowser = Bowser.parse(window.navigator.userAgent);
-  console.log(window.navigator.userAgent);
-  console.log(parsedBrowser);
-  console.log(inAppRes);
-  console.log({
-    isDesktop: inAppRes.isDesktop,
-    isMobile: inAppRes.isMobile,
-    isInApp: inAppRes.isInApp,
-    browser: inAppRes.browser
-  });
-  const isAndroidInApp = getAndroidInApp();
-  console.log({ isAndroidInApp });
-  return true;
 };
 
-const inApp = () => {
-  isInApp();
+const IOSInAppAndDefaultInApp = () => {
+  return (
+    <div
+      style={{
+        display: "fixed",
+        background: "red",
+        width: "100%",
+        height: "100%",
+        left: 0,
+        top: 0,
+        zIndex: 10000,
+      }}
+    ></div>
+  );
+};
+
+const androidOpenInBrowserLink = (url) => {
+  return `intent:${url}#Intent;end`;
+};
+
+const inApp = ({ url = "https://example.com" }) => {
+  const { isInApp, androidInApp, iOSInApp } = getInApp();
+  useEffect(() => {
+    if (androidInApp) {
+      // Try redirecting automatically
+      window.location = `intent:${androidOpenInBrowserLink(url)}#Intent;end`;
+    }
+  }, [androidInApp]);
+
+  if (androidInApp) return <AndroidInApp />;
+  if (iOSInApp || isInApp) return <IOSInAppAndDefaultInApp />;
   return null;
 };
 
