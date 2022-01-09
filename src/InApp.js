@@ -1,4 +1,5 @@
-import InApp, { useEffect } from "detect-inapp";
+import React, { useEffect } from "react";
+import InApp from "detect-inapp";
 import Bowser from "bowser";
 
 const getInApp = () => {
@@ -11,7 +12,7 @@ const getInApp = () => {
   // For debugging
   // if (isInApp || bowserParsed.platform.type !== "desktop") {
   console.log(window.navigator.userAgent);
-  console.log(parsedBrowser);
+  console.log(bowserParsed);
   console.log(inAppRes);
   // }
 
@@ -27,11 +28,16 @@ const getInApp = () => {
 // 1. Need to detect if in app
 // 2. Need to serve up options for android + iphone
 
-const AndroidInApp = () => {
+const getAndroidRedirectLink = (url) => {
+  return `intent:${url}#Intent;end`;
+};
+
+const AndroidInApp = (url) => {
   return (
     <div
       style={{
-        display: "fixed",
+        display: "flex",
+        position: "fixed",
         background: "green",
         width: "100%",
         height: "100%",
@@ -39,7 +45,13 @@ const AndroidInApp = () => {
         top: 0,
         zIndex: 10000,
       }}
-    ></div>
+    >
+      <a
+        style={{ margin: "auto" }}
+        href={url}
+        target={"_blank"}
+      >{`Open Browser`}</a>
+    </div>
   );
 };
 
@@ -47,7 +59,8 @@ const IOSInAppAndDefaultInApp = () => {
   return (
     <div
       style={{
-        display: "fixed",
+        display: "flex",
+        position: "fixed",
         background: "red",
         width: "100%",
         height: "100%",
@@ -59,20 +72,18 @@ const IOSInAppAndDefaultInApp = () => {
   );
 };
 
-const androidOpenInBrowserLink = (url) => {
-  return `intent:${url}#Intent;end`;
-};
-
 const inApp = ({ url = "https://example.com" }) => {
   const { isInApp, androidInApp, iOSInApp } = getInApp();
+
   useEffect(() => {
     if (androidInApp) {
       // Try redirecting automatically
-      window.location = `intent:${androidOpenInBrowserLink(url)}#Intent;end`;
+      const androidRedirectLink = getAndroidRedirectLink(url);
+      window.location = `intent:${androidRedirectLink}#Intent;end`;
     }
   }, [androidInApp]);
 
-  if (androidInApp) return <AndroidInApp />;
+  if (androidInApp) return <AndroidInApp url={url} />;
   if (iOSInApp || isInApp) return <IOSInAppAndDefaultInApp />;
   return null;
 };
