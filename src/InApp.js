@@ -6,7 +6,13 @@ const getAndroidInApp = () => {
     navigator.userAgent || navigator.vendor || window.opera
   );
   const bowserParsed = Bowser.parse(window.navigator.userAgent);
-  return inAppRes.isInApp && bowserParsed.os.name === "Android";
+  const androidInApp = inAppRes.isInApp && bowserParsed.os.name === "Android";
+  const iOSInApp = inAppRes.isInApp && bowserParsed.os.name === "iOS";
+  return {
+    inApp: inAppRes.isInApp,
+    androidInApp,
+    iOSInApp
+  };
 };
 
 // 1. Need to detect if in app
@@ -19,6 +25,7 @@ export const isInApp = () => {
   const parsedBrowser = Bowser.parse(window.navigator.userAgent);
   console.log(window.navigator.userAgent);
   console.log(parsedBrowser);
+  console.log(inAppRes);
   console.log({
     isDesktop: inAppRes.isDesktop,
     isMobile: inAppRes.isMobile,
