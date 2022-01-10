@@ -32,7 +32,12 @@ const inApp = ({
     return (
       <InAppLanding name={name} url={url} email={email} addDelay>
         <>
-          <p>Click the link below.</p>
+          <p>
+            {" "}
+            For a better experience
+            <br />
+            Click the link below.
+          </p>
           <a
             style={{ margin: "auto" }}
             href={getAndroidRedirectLink(url)}
