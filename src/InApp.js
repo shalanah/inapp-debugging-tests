@@ -49,7 +49,7 @@ const inApp = ({
         <p style={{ maxWidth: "34ch" }}>
           For a better experience
           <br />
-          Open a new Safari or Chrome window and go to spiralbetty.com
+          Open a new Safari or Chrome window and go to {domain}
         </p>
         {/* Padding */}
         <div style={{ height: 20 }} />
