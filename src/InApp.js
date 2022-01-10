@@ -29,7 +29,7 @@ const inApp = ({
   // Android view
   if (androidInApp)
     return (
-      <InAppLanding url={(url, name, email)}>
+      <InAppLanding name={name} url={url} email={email}>
         <>
           <p>Click the link below to open in a better browser.</p>
           <a
