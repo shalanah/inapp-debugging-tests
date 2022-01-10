@@ -45,9 +45,9 @@ const inApp = ({
   if (isInApp) {
     return (
       <InAppLanding name={name} url={url} email={email}>
+        <p>Open Chrome or Safari fresh on your {platform}</p>
         <p>
-          Open Chrome or Safari fresh on your {platform} and go to {domain} or
-          search for "{name}".
+          Go to {domain} or search for "{name}".
         </p>
       </InAppLanding>
     );
