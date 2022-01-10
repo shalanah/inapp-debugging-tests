@@ -49,7 +49,7 @@ const inApp = ({
         <p>
           Open Safari or Chrome fresh on your {platform}
           <br />
-          Go to {domain} or search for "{name}".
+          Then search for "{name}" or go to {domain}.
         </p>
       </InAppLanding>
     );
