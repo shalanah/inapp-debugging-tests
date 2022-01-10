@@ -46,12 +46,10 @@ const inApp = ({
   if (isInApp) {
     return (
       <InAppLanding name={name} url={url} email={email}>
-        <p>
+        <p style={{ maxWidth: "34ch" }}>
           For a better experience
           <br />
-          Open a new Safari or Chrome window
-          <br />
-          and go to spiralbetty.com
+          Open a new Safari or Chrome window and go to spiralbetty.com
         </p>
         {/* Padding */}
         <div style={{ height: 20 }} />
