@@ -4,8 +4,7 @@ import {
   getAndroidRedirectLink,
   getiOSChromeRedirectLink,
 } from "./inAppUtils";
-import InAppAndroid from "./InAppAndroid";
-import InAppDefault from "./InAppDefault";
+import InAppLanding from "./InAppLanding";
 
 const inApp = ({
   url = "https://spiralbetty.com",
@@ -13,6 +12,7 @@ const inApp = ({
   name = "Spiral Betty",
 }) => {
   const { isInApp, androidInApp, iOSInApp } = getInApp();
+  const domain = url.split("//")[1];
 
   // Try auto redirect Android
   useEffect(() => {
@@ -26,10 +26,36 @@ const inApp = ({
     if (iOSInApp) window.location = getiOSChromeRedirectLink(url);
   }, [androidInApp]);
 
-  if (androidInApp) return <InAppAndroid url={url} name={name} email={email} />;
+  // Android view
+  if (androidInApp)
+    return (
+      <InAppLanding url={(url, name, email)}>
+        <>
+          <p>Click the link below to open in a better browser.</p>
+          <a
+            style={{ margin: "auto" }}
+            href={getAndroidRedirectLink(url)}
+            target={"_blank"}
+          >{`Open Spiral Betty`}</a>
+        </>
+      </InAppLanding>
+    );
+
+  // For iOS and unknown OS
   if (isInApp) {
-    // For iOS and unknown OS
-    return <InAppDefault email={email} name={name} url={url} />;
+    return (
+      <InAppLanding name={name} url={url} email={email}>
+        <>
+          <p>Steps to use {domain}</p>
+          <ul>
+            <li>Open your favorite browser like Safari or Chrome</li>
+            <li>
+              Paste in {domain} or search for "{name}"
+            </li>
+          </ul>
+        </>
+      </InAppLanding>
+    );
   }
 
   return null;

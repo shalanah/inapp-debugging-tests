@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getAndroidRedirectLink } from "./inAppUtils";
 
-const InAppAndroid = ({ url, name, email }) => {
+const InAppLanding = ({ name, email, children }) => {
   const [waitForRedirect, setWaitForRedirect] = useState(true);
   useEffect(() => {
     setTimeout(() => setWaitForRedirect(false), 300);
@@ -35,12 +34,7 @@ const InAppAndroid = ({ url, name, email }) => {
               <p>
                 This browser isn't <strong>{name}</strong> friendly.
               </p>
-              <p>Click the link below to open in a better browser.</p>
-              <a
-                style={{ margin: "auto" }}
-                href={getAndroidRedirectLink(url)}
-                target={"_blank"}
-              >{`Open Spiral Betty`}</a>
+              {children}
             </div>
           </div>
           <p>Contact {email} for questions or support</p>
@@ -50,4 +44,4 @@ const InAppAndroid = ({ url, name, email }) => {
   );
 };
 
-export default InAppAndroid;
+export default InAppLanding;
