@@ -64,7 +64,7 @@ const IOSInAppAndDefaultInApp = ({ name, url, email }) => {
 };
 
 const inApp = ({
-  url = "https://example.com",
+  url = "http://example.com",
   email = "me@example.com",
   name = "Example",
 }) => {
