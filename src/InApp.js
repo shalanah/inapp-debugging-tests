@@ -47,7 +47,7 @@ const inApp = ({
     return (
       <InAppLanding name={name} url={url} email={email}>
         <p>
-          For a better experience...
+          For a better experience
           <br />
           Open a new Safari or Chrome window
           <br />
