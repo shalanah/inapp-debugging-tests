@@ -11,7 +11,7 @@ const inApp = ({
   email = "hi.spiralbetty@gmail.com",
   name = "Spiral Betty",
 }) => {
-  const { isInApp, androidInApp, iOSInApp } = getInApp();
+  const { isInApp, androidInApp, iOSInApp, platform } = getInApp();
   const domain = url.split("//")[1];
 
   // Try auto redirect Android
@@ -45,13 +45,10 @@ const inApp = ({
   if (isInApp) {
     return (
       <InAppLanding name={name} url={url} email={email}>
-        <>
-          <p>How to Open {name}</p>
-          <p>
-            Open Chrome or Safari fresh on your computer or phone and search for
-            "{name}" or go to {domain}.
-          </p>
-        </>
+        <p>
+          Open Chrome or Safari fresh on your {platform} and go to {domain} or
+          search for "{name}".
+        </p>
       </InAppLanding>
     );
   }
