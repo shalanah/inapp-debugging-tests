@@ -17,7 +17,10 @@ export const getInApp = () => {
     isInApp,
     androidInApp: isInApp && bowserParsed.os.name === "Android",
     iOSInApp: isInApp && bowserParsed.os.name === "iOS",
-    platform: bowserParsed.platform.type,
+    platform:
+      bowserParsed.platform.type === "mobile"
+        ? "phone"
+        : bowserParsed.platform.type,
   };
 };
 
