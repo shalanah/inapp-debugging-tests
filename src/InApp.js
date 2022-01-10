@@ -4,7 +4,7 @@ import { getInApp, getAndroidRedirectLink } from "./inAppUtils";
 // 1. Need to detect if in app
 // 2. Need to serve up options for android + iphone
 
-const AndroidInApp = (url) => {
+const AndroidInApp = ({ url }) => {
   return (
     <div
       style={{
@@ -23,13 +23,13 @@ const AndroidInApp = (url) => {
         href={getAndroidRedirectLink(url)}
         target={"_blank"}
       >{`Open Browser`}</a>
-      <a
+      {/* <a
         style={{ margin: "auto" }}
         href={url}
         target={"_blank"}
       >{`Open Browser 2`}</a>
       <a style={{ margin: "auto" }} href={url} target={"_blank"}>{`Example`}</a>
-      <a style={{ margin: "auto" }} href={url}>{`Example 2`}</a>
+      <a style={{ margin: "auto" }} href={url}>{`Example 2`}</a> */}
     </div>
   );
 };
@@ -51,11 +51,11 @@ const IOSInAppAndDefaultInApp = ({ name, url, email }) => {
     >
       <h1>Oooops!</h1>
       <p>This browser isn't {name} friendly.</p>
-      <h2>Steps to use {url}</h2>
+      <h2>Steps to use {urlWithoutProtocol}</h2>
       <ul>
         <ol>Open your favorite browser like Safari</ol>
         <ol>
-          Paste in {url} or search for "{name}"
+          Paste in {urlWithoutProtocol} or search for "{name}"
         </ol>
       </ul>
       <p>Contact {email} for support</p>
@@ -64,7 +64,7 @@ const IOSInAppAndDefaultInApp = ({ name, url, email }) => {
 };
 
 const inApp = ({
-  url = "http://example.com",
+  url = "https://example.com",
   email = "me@example.com",
   name = "Example",
 }) => {
