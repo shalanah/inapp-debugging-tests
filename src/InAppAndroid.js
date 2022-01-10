@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getAndroidRedirectLink } from "./inAppUtils";
-import styled from "styled-components";
 
 const InAppAndroid = ({ url, name, email }) => {
   const [waitForRedirect, setWaitForRedirect] = useState(true);
