@@ -73,7 +73,7 @@ const inApp = ({
   useEffect(() => {
     if (androidInApp) {
       // Try redirecting automatically
-      window.location = getAndroidRedirectLink(url);
+      setTimeout(() => (window.location = getAndroidRedirectLink(url)), 0);
     }
   }, [androidInApp]);
 
