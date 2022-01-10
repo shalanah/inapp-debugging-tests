@@ -31,7 +31,7 @@ const inApp = ({
     return (
       <InAppLanding name={name} url={url} email={email}>
         <>
-          <p>Click the link below to open in a better browser.</p>
+          <p>Click the link below.</p>
           <a
             style={{ margin: "auto" }}
             href={getAndroidRedirectLink(url)}

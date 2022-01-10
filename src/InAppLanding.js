@@ -37,7 +37,11 @@ const InAppLanding = ({ name, email, children }) => {
               {children}
             </div>
           </div>
-          <p>Contact {email} for questions or support</p>
+          <p>
+            Contact {email}
+            <br />
+            for questions or support
+          </p>
         </div>
       )}
     </div>
