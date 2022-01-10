@@ -49,8 +49,7 @@ const inApp = ({
         <p>
           For a better experience,
           <br />
-          open a brand new Safari or Chrome window and navigate to Spiral Betty
-          from there.
+          open a new Safari or Chrome window and go to spiralbetty.com.
         </p>
       </InAppLanding>
     );
