@@ -9,14 +9,13 @@ export const getInApp = () => {
   const isInApp = inAppRes.isInApp;
 
   // For debugging
-  // if (isInApp || bowserParsed.platform.type !== "desktop") {
   console.log(window.navigator.userAgent);
   console.log(bowserParsed);
-  console.log(inAppRes);
-  // }
+  console.log({ inAppRes });
+
   return {
-    isInApp,
-    androidInApp: isInApp && bowserParsed.os.name === "Android",
+    isInApp: true,
+    androidInApp: true, //isInApp && bowserParsed.os.name === "Android",
     iOSInApp: isInApp && bowserParsed.os.name === "iOS",
   };
 };

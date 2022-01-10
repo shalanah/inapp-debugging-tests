@@ -1,4 +1,16 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  margin: auto;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  display: flex;
 }
