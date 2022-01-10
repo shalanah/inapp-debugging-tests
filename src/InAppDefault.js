@@ -32,16 +32,15 @@ const InAppDefault = ({ name, url, email }) => {
           <div />
           <div style={{ flex: 1, display: "flex" }}>
             <div style={{ margin: "auto" }}>
-              <h1>Oooops!</h1>
               <p>
                 This browser isn't <strong>{name}</strong> friendly.
               </p>
-              <h2>Steps to use {domain}</h2>
+              <p>Steps to use {domain}</p>
               <ul>
-                <ol>Open your favorite browser like Safari</ol>
-                <ol>
+                <li>Open your favorite browser like Safari or Chrome</li>
+                <li>
                   Paste in {domain} or search for "{name}"
-                </ol>
+                </li>
               </ul>
             </div>
           </div>

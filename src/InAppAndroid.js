@@ -32,7 +32,6 @@ const InAppAndroid = ({ url, name, email }) => {
           <div />
           <div style={{ flex: 1, display: "flex" }}>
             <div style={{ margin: "auto" }}>
-              <h1>Oooops!</h1>
               <p>
                 This browser isn't <strong>{name}</strong> friendly.
               </p>
