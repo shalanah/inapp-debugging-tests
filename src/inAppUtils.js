@@ -30,5 +30,5 @@ export const getAndroidRedirectLink = (url) => {
 
 export const getiOSChromeRedirectLink = (url) => {
   const domain = url.split("//")[1];
-  return `GoogleChrome://${domain}`;
+  return `Firefox://${domain}`;
 };

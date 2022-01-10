@@ -40,7 +40,7 @@ const InAppLanding = ({ name, email, children }) => {
           <p>
             Contact {email}
             <br />
-            for questions or support
+            for questions and support
           </p>
         </div>
       )}
