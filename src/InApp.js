@@ -22,7 +22,7 @@ const inApp = ({
   }, [androidInApp]);
 
   // Try auto redirect iOS via Chrome
-  // Don't want to spam comp
+  // Don't want to because it will spam browser if it does not exist
   // useEffect(() => {
   //   if (iOSInApp) window.location = getiOSChromeRedirectLink(url);
   // }, [androidInApp]);
