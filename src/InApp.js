@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { getInApp, getAndroidRedirectLink } from "./inAppUtils";
-
-// 1. Need to detect if in app
-// 2. Need to serve up options for android + iphone
+import {
+  getInApp,
+  getAndroidRedirectLink,
+  getiOSChromeRedirectLink,
+} from "./inAppUtils";
 
 const AndroidInApp = ({ url }) => {
   return (
@@ -35,7 +36,7 @@ const AndroidInApp = ({ url }) => {
 };
 
 const IOSInAppAndDefaultInApp = ({ name, url, email }) => {
-  const urlWithoutProtocol = url.split("//")[1];
+  const domain = url.split("//")[1];
   return (
     <div
       style={{
@@ -51,11 +52,11 @@ const IOSInAppAndDefaultInApp = ({ name, url, email }) => {
     >
       <h1>Oooops!</h1>
       <p>This browser isn't {name} friendly.</p>
-      <h2>Steps to use {urlWithoutProtocol}</h2>
+      <h2>Steps to use {domain}</h2>
       <ul>
         <ol>Open your favorite browser like Safari</ol>
         <ol>
-          Paste in {urlWithoutProtocol} or search for "{name}"
+          Paste in {domain} or search for "{name}"
         </ol>
       </ul>
       <p>Contact {email} for support</p>
@@ -70,11 +71,16 @@ const inApp = ({
 }) => {
   const { isInApp, androidInApp, iOSInApp } = getInApp();
 
+  // Try auto redirect Android
   useEffect(() => {
     if (androidInApp) {
-      // Try redirecting automatically
-      setTimeout(() => (window.location = getAndroidRedirectLink(url)), 0);
+      setTimeout(() => (window.location = getAndroidRedirectLink(url)), 60);
     }
+  }, [androidInApp]);
+
+  // Try auto redirect iOS via Chrome
+  useEffect(() => {
+    if (iOSInApp) window.location = getiOSChromeRedirectLink(url);
   }, [androidInApp]);
 
   if (androidInApp) return <AndroidInApp url={url} />;
