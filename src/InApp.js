@@ -53,6 +53,8 @@ const inApp = ({
           <br />
           and go to spiralbetty.com
         </p>
+        {/* Padding */}
+        <div style={{ height: 20 }} />
       </InAppLanding>
     );
   }
