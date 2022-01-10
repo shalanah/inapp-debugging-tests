@@ -14,8 +14,8 @@ export const getInApp = () => {
   console.log({ inAppRes });
 
   return {
-    isInApp: true,
-    androidInApp: true, //isInApp && bowserParsed.os.name === "Android",
+    isInApp,
+    androidInApp: isInApp && bowserParsed.os.name === "Android",
     iOSInApp: isInApp && bowserParsed.os.name === "iOS",
   };
 };
