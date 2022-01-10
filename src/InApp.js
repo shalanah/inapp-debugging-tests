@@ -51,7 +51,7 @@ const inApp = ({
           <br />
           Open a new Safari or Chrome window
           <br />
-          and go to spiralbetty.com.
+          and go to spiralbetty.com
         </p>
       </InAppLanding>
     );
