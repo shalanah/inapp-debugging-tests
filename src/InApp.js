@@ -30,7 +30,7 @@ const inApp = ({
   // Android view
   if (androidInApp)
     return (
-      <InAppLanding name={name} url={url} email={email}>
+      <InAppLanding name={name} url={url} email={email} addDelay>
         <>
           <p>Click the link below.</p>
           <a

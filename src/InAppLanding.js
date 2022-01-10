@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const InAppLanding = ({ name, email, children }) => {
-  const [waitForRedirect, setWaitForRedirect] = useState(true);
+const InAppLanding = ({ name, email, children, addDelay }) => {
+  const [waitForRedirect, setWaitForRedirect] = useState(addDelay);
   useEffect(() => {
     setTimeout(() => setWaitForRedirect(false), 300);
   }, []);
