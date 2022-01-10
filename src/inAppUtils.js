@@ -28,6 +28,7 @@ export const getAndroidRedirectLink = (url) => {
   return `intent:${url}#Intent;end`;
 };
 
+// Not for now
 export const getiOSChromeRedirectLink = (url) => {
   const domain = url.split("//")[1];
   return `GoogleChrome://${domain}`;

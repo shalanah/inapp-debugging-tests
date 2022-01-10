@@ -22,9 +22,10 @@ const inApp = ({
   }, [androidInApp]);
 
   // Try auto redirect iOS via Chrome
-  useEffect(() => {
-    if (iOSInApp) window.location = getiOSChromeRedirectLink(url);
-  }, [androidInApp]);
+  // Don't want to spam comp
+  // useEffect(() => {
+  //   if (iOSInApp) window.location = getiOSChromeRedirectLink(url);
+  // }, [androidInApp]);
 
   // Android view
   if (androidInApp)
@@ -45,9 +46,8 @@ const inApp = ({
   if (isInApp) {
     return (
       <InAppLanding name={name} url={url} email={email}>
-        <p>Open Chrome or Safari fresh on your {platform}</p>
-        <p>
-          Go to {domain} or search for "{name}".
+        <p>Open Safari or Chrome fresh on your {platform}</p>
+        <br />Go to {domain} or search for "{name}".
         </p>
       </InAppLanding>
     );
