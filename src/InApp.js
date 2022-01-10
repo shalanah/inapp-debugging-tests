@@ -46,7 +46,12 @@ const inApp = ({
   if (isInApp) {
     return (
       <InAppLanding name={name} url={url} email={email}>
-        <p>For a better experience, open Safari or Chrome instead.</p>
+        <p>
+          For a better experience,
+          <br />
+          open a brand new Safari or Chrome window and navigate to Spiral Betty
+          from there.
+        </p>
       </InAppLanding>
     );
   }
