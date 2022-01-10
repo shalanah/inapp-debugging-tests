@@ -26,9 +26,7 @@ const inApp = ({
     if (iOSInApp) window.location = getiOSChromeRedirectLink(url);
   }, [androidInApp]);
 
-  return <InAppAndroid url={url} />;
-
-  if (androidInApp) return <InAppAndroid url={url} />;
+  if (androidInApp) return <InAppAndroid url={url} name={name} email={email} />;
   if (isInApp) {
     // For iOS and unknown OS
     return <InAppDefault email={email} name={name} url={url} />;
