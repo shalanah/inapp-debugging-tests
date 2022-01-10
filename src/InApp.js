@@ -46,13 +46,11 @@ const inApp = ({
     return (
       <InAppLanding name={name} url={url} email={email}>
         <>
-          <p>Steps to use {domain}</p>
-          <ul>
-            <li>Open your favorite browser like Safari or Chrome</li>
-            <li>
-              Paste in {domain} or search for "{name}"
-            </li>
-          </ul>
+          <p>How to Open {name}</p>
+          <p>
+            Open Chrome or Safari fresh on your computer or phone and search for
+            "{name}" or go to {domain}.
+          </p>
         </>
       </InAppLanding>
     );
